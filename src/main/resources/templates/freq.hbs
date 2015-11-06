@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+    {{{header}}}
+    
+    <!-- Banner -->
+    <section id="banner">
+        <h2>What's the fequency, Kenneth?</h2>
+        <p>Lyric Word Frequencies</p>
+        <p>Drop in a URL from that big metropolitan lyrics website.</p>
+        <ul class="actions">
+            <li>
+                <form action="/freq">
+                    <input type="text" name="link" class="textarea" value="{{{linkPreload}}}"><br>
+                    <input type="submit" value="{{buttontext}}" class="button special">
+                </form>
+            </li>
+        </ul>
+    </section>
+    
+    <body>
+        <!-- Content -->
+        <section id="one" class="wrapper special">
+            <div class="inner">
+                <header class="major">
+                    <h2>{{lyricsTitle}}</h2>
+                </header>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fa fa-diamond"></i>
+                        <h3>Frequency</h3>
+                        {{{freq}}}
+                    </div>
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fa fa-diamond"></i>
+                        <h3>Lyrics</h3>
+                        {{{lyrics}}}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    
+    {{{footer}}}
+    
+</html>
