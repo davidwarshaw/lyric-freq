@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.lang3.tuple.Pair;
+import java.util.Map.Entry;
 
+import org.apache.commons.lang3.tuple.Pair;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 
@@ -28,6 +29,7 @@ public class App {
     private static HashMap<String, String> initMap() {
         HashMap<String, String> map = new HashMap<>();
 
+        map.put("title", "What's the frequency, Kenneth?");
         map.put("buttontext", BUTTON_TEXT);
         
         try {
@@ -83,11 +85,20 @@ public class App {
             
             // Get the lyrics frequency
             final Map<String, Integer> freq = LyricScraper.freq(lyrics);
+
+            // Turn to frequency into a table
+            String freqRows = "";
+            for (Entry<String, Integer> entry : freq.entrySet()) {
+            	freqRows += "<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>";
+            }
+
+            final String freqCount = new Integer(freq.size()).toString();
             
             // Load the model map
             valueMap.put("lyricsTitle", lyricsTitle);
             valueMap.put("lyrics", lyrics);
-            valueMap.put("freq", freq.toString());
+            valueMap.put("freqCount", freqCount);
+            valueMap.put("freqRows", freqRows);
             
             // Preload the link
             valueMap.put("linkPreload", link);

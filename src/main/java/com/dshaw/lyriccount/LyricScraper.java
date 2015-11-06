@@ -1,10 +1,14 @@
 package com.dshaw.lyriccount;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.jsoup.Jsoup;
@@ -38,12 +42,21 @@ public class LyricScraper {
     
     public static Map<String, Integer> freq(String safeLyrics) {
         Map<String, Integer> freq = new HashMap<>();
+        
         Matcher matcher = tokenizer.matcher(safeLyrics);
+        
+        // Create a map of the frequency
         while (matcher.find()) {
             String word = matcher.group().toLowerCase();
             freq.put(word, freq.getOrDefault(word, 0) + 1);
         }
-        return freq;
+        
+        // Sort the map by descending value
+        Map<String, Integer> sortedMap = freq.entrySet().stream()
+        		.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        		.collect(Collectors.toMap(Entry::getKey, Entry::getValue,	(e1, e2) -> e1, LinkedHashMap::new));
+
+        return sortedMap;
     }
     
 }

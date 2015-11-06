@@ -5,13 +5,13 @@
     
     <!-- Banner -->
     <section id="banner">
-        <h2>What's the fequency, Kenneth?</h2>
+        <h2>{{title}}</h2>
         <p>Lyric Word Frequencies</p>
         <p>Drop in a URL from that big metropolitan lyrics website.</p>
         <ul class="actions">
             <li>
                 <form action="/freq">
-                    <input type="text" name="link" class="textarea" value="{{{linkPreload}}}"><br>
+                    <input type="text" name="link" class="box" value="{{{linkPreload}}}"><br>
                     <input type="submit" value="{{buttontext}}" class="button special">
                 </form>
             </li>
@@ -21,20 +21,19 @@
     <body>
         <!-- Content -->
         <section id="one" class="wrapper special">
+            <header class="major">
+                <h2>{{lyricsTitle}}</h2>
+            </header>
             <div class="inner">
-                <header class="major">
-                    <h2>{{lyricsTitle}}</h2>
-                </header>
                 <div class="features">
                     <div class="feature">
-                        <i class="fa fa-diamond"></i>
-                        <h3>Frequency</h3>
-                        {{{freq}}}
+                        <h3>Lyric Word Frequency</h3>
+                        <h4>{{freqCount}} distinct words</h4>
+						<table>
+							{{{freqRows}}}
+						</table>
                     </div>
-                </div>
-                <div class="features">
                     <div class="feature">
-                        <i class="fa fa-diamond"></i>
                         <h3>Lyrics</h3>
                         {{{lyrics}}}
                     </div>
